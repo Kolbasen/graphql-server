@@ -9,16 +9,22 @@
     "start-dev": "nodemon src/index.js",
     "debug": "node --inspect src/index.js",
     "lint": "npx eslint --ext .js .",
-    "lint:fix": "npx eslint --fix --ext .js ."
+    "lint:fix": "npx eslint --fix --ext .js .",
+    "prisma": "prisma db push && prisma migrate"
   },
   "dependencies": {
     "@graphql-yoga/node": "^2.11.0",
-    "graphql": "^16.5.0"
+    "@prisma/client": "^4.0.0",
+    "graphql": "^16.5.0",
+    "prisma": "^4.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.20.2",
     "nodemon": "^2.0.4"
+  },
+  "prisma": {
+    "schema": "database/schema.prisma"
   }
 }

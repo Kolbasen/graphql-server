@@ -5,16 +5,16 @@
     info - This contains information about the execution state of the operation
 */
 
-const products = (_parent, _args, _context, _info) => {
+const products = async (_parent, _args, context, _info) => {
 
-    const foundProducts = [
-        { id: '1', title: 'Product 1.0', price: 10.9 },
-        { id: '2', title: 'Product 2.0', price: 27.9 },
-    ];
+    const foundProducts = await context.prisma.product.findMany();
 
     return foundProducts;
 };
 
+const createProduct = async (_parent, args, context) => context.prisma.product.create({ data: args.product });
+
 module.exports = {
     products,
+    createProduct,
 };
