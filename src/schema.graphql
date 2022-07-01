@@ -1,6 +1,7 @@
 type Query {
     version: String!
     products: [Product!]!
+    reviews: [Review!]!
 }
 
 input ProductInput {
@@ -8,8 +9,14 @@ input ProductInput {
     price: Float!
 }
 
+input ReviewInput {
+    text: String!
+    productId: Int!
+}
+
 type Mutation {
     createProduct(product: ProductInput!): Product!
+    createReview(review: ReviewInput!): Review!
 }
 
 type Subscription {
@@ -20,4 +27,11 @@ type Product {
     id: Int!
     title: String!
     price: Float!
+    reviews: [Review!]!
+}
+
+type Review {
+    id: Int!
+    text: String!
+    product: Product!    
 }

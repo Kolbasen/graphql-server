@@ -1,8 +1,14 @@
-const { products } = require('./Product');
+const products = async (_parent, _args, context, _info) => {
 
-const Query = {
-    products,
-    version: () => '1.0',
+    const productList = await context.prisma.product.findMany({
+        include: {
+            reviews: true,
+        },
+    });
+
+    return productList;
 };
 
-module.exports = Query;
+module.exports = {
+    products,
+};

@@ -9,7 +9,15 @@ generator client {
 }
 
 model Product {
-  id     Int    @id @default(autoincrement())
-  title  String
-  price  Float 
+  id      Int     @id @default(autoincrement())
+  title   String
+  price   Float 
+  reviews Review[]
+}
+
+model Review {
+  id        Int     @id @default(autoincrement())
+  text      String
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
 }
