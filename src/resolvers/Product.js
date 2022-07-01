@@ -5,16 +5,37 @@
     info - This contains information about the execution state of the operation
 */
 
+// Queries
 const products = async (_parent, _args, context, _info) => {
 
-    const foundProducts = await context.prisma.product.findMany();
+    const productList = await context.prisma.product.findMany({
+        include: {
+            reviews: true,
+        },
+    });
 
-    return foundProducts;
+    return productList;
 };
 
-const createProduct = async (_parent, args, context) => context.prisma.product.create({ data: args.product });
+// Mutations
+const createProduct = async (_parent, args, context) => {
+    const createdProduct = await context.prisma.product.create({ data: args.product });
+    context.pubsub.publish('NEW_PRODUCT', createdProduct);
+    return createdProduct;
+};
+
+
+// Subscriptions
+
+const newProductSubscribe = (_parent, _args, context) => context.pubsub.subscribe('NEW_PRODUCT');
+
+const newProduct = {
+    subscribe: newProductSubscribe,
+    resolve: payload => payload,
+};
 
 module.exports = {
     products,
     createProduct,
+    newProduct,
 };

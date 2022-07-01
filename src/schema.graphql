@@ -12,6 +12,10 @@ type Mutation {
     createProduct(product: ProductInput!): Product!
 }
 
+type Subscription {
+    newProduct: Product
+}
+
 type Product {
     id: Int!
     title: String!
