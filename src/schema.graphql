@@ -1,6 +1,21 @@
+enum Sort {
+  asc
+  desc
+}
+
+input ProductOrderByInput {
+  title: Sort
+  id: Sort
+}
+
+type Products {
+    productList: [Product!]!
+    count: Int!
+}
+
 type Query {
     version: String!
-    products: [Product!]!
+    products(filter: String, skip: Int, take: Int, orderBy: ProductOrderByInput): Products
     reviews: [Review!]!
 }
 
