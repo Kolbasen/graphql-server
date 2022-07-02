@@ -16,7 +16,9 @@
     "@graphql-yoga/node": "^2.11.0",
     "@prisma/client": "^4.0.0",
     "graphql": "^16.5.0",
-    "prisma": "^4.0.0"
+    "graphql-ws": "^5.9.1",
+    "prisma": "^4.0.0",
+    "ws": "^8.8.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
