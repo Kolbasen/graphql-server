@@ -16,6 +16,8 @@ async function main() {
         Query,
         Mutation,
         Subscription,
+        Review,
+        Product
     };
 
     const typeDefs = readFileSync(require.resolve('./schema.graphql')).toString('utf-8');
